@@ -1,0 +1,22 @@
+export const mockUsers = [
+    {
+        id:1,
+        userName:"Raza",
+        country:"Pakistan"
+    },
+    {
+        id:2,
+        userName:"John",
+        country:"America"
+    },
+    {
+        id:3,
+        userName:"Ali",
+        country:"Pakistan"
+    },
+    {
+        id:4,
+        userName:"Awais",
+        country:"Pakistan"
+    }
+]

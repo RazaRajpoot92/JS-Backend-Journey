@@ -1,0 +1,24 @@
+{
+  "name": "backend-journey",
+  "version": "1.0.0",
+  "description": "This is my backend journey with Javascript",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "type": "module",
+  "keywords": [
+    "Javascript",
+    "nodejs",
+    "expressjs",
+    "mongodb"
+  ],
+  "author": "Ahmad Raza",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-validator": "^7.1.0",
+    "nodemon": "^3.1.2"
+  }
+}
