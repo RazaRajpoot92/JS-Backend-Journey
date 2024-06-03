@@ -2,7 +2,8 @@ export const mockUsers = [
     {
         id:1,
         userName:"Raza",
-        country:"Pakistan"
+        country:"Pakistan",
+        password:"123hello"
     },
     {
         id:2,
