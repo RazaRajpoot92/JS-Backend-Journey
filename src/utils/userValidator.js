@@ -1,7 +1,5 @@
-
-
 export const userValidationSchema = {
-    userName:{
+    username:{
         notEmpty:{
             errorMessage:"Username not be empty"
         },
@@ -13,13 +11,18 @@ export const userValidationSchema = {
             errorMessage:"Username must be at least 4 chars"
         }
     },
-    country:{
+    displayname:{
         notEmpty:{
-            errorMessage:"Country not be empty"
+            errorMessage:"display name not be empty"
         },
         isString:{
-            errorMessage:"Country must be string"
+            errorMessage:"display name must be string"
         },
         
+    },
+    password:{
+        notEmpty:{
+            errorMessage:"Password not be empty"
+        }
     }
 }

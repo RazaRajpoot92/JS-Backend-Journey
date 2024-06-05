@@ -1,9 +1,11 @@
 import { Router } from "express";
 import { mockUsers } from "../utils/constants.js";
 import { userValidationSchema } from "../utils/userValidator.js";
-import { checkSchema, validationResult } from "express-validator";
+import { checkSchema, matchedData, validationResult } from "express-validator";
 import { checkUserById } from "../utils/middlewares/checkUserById.js";
+import { User } from "../mongoose/schema/user.js";
 import passport from "passport";
+import { hashPassword } from "../utils/helpers.js";
 
 const router = Router()
 
@@ -43,14 +45,21 @@ router.get("/api/users/:id",checkUserById,(request, response)=>{
 })
 
 //add user...
-router.post("/api/users", checkSchema(userValidationSchema),(request,response)=>{
-    const {body} = request
+router.post("/api/users", checkSchema(userValidationSchema), async(request,response)=>{
+    
     const result = validationResult(request)
-    if(!result.isEmpty()) return response.status(400).send(result.array())
-    if(!body) return response.status(400).json({"msg":"Bad Request"})
-    const newUser = {id:mockUsers[mockUsers.length-1].id+1,...body}
-    mockUsers.push(newUser)
-    return response.status(201).send(newUser)
+    if(!result.isEmpty()) return response.status(401).send(result.array())
+    
+    const data = matchedData(request)
+    data.password = hashPassword(data.password)
+    const newUser = new User(data)
+    try{
+        const savedUser = await newUser.save()
+        return response.status(201).send(savedUser)
+    }catch(error){
+        return response.status(401).send(error)
+    }
+    
 
 })
 // update user
